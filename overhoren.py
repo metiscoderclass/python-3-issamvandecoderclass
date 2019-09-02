@@ -20,8 +20,6 @@ def main():
     welkom_keuze()
     keuze = input("Welke letter geef je mij mee?:")
     woorden = {}
-    if (keuze == 'q'):
-        stoppen()
     while keuze != 'q':
         if (keuze == 'b'):
             bekijk_lijst(woorden)
@@ -33,6 +31,7 @@ def main():
             overhoren_lijst(woorden)
         strepen()
         keuze = input("Welke letter geef je mij mee?: ")
+    stoppen()
 
 
 def bekijk_lijst(woorden):
@@ -50,10 +49,10 @@ def nieuwe_lijst(woorden):
     while key != "q":
         value = input("Engels:")
         woorden[key] = value
-        f = open('lijstwoorden.txt', 'w')
-        for key in woorden:
-            f.write("{}:{} ".format(key, woorden[key]))
         key = input("Nederlands:")
+    f = open('lijstwoorden.txt', 'w')
+    for key in woorden:
+        f.write("{}:{} ".format(key, woorden[key]))
     f.close()
     print("Je bent klaar met je lijst!")
     print("Als je nog meer woorden wilt wijzigen, kan dat in het menu")
@@ -97,9 +96,6 @@ def overhoren_lijst(woorden):
             print("Het goede antwoord:",woorden[nlwoord])
             punten -= 1
             print("Aantal punten: ", punten)
-        while punten > 2:
-            print("Je bent klaar!!", "Aantal punten:", punten)
-            break
 
 def stoppen():
     print("Dit programma sluit over 5 seconden,")
